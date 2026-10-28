@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+:root {
+  --background: #A78BFA;
+  --foreground: #0f172a;
+}
+
+body {
+  background-color: #A78BFA;
+  color: #0f172a;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* ─── Premium KeyShield Motion Design & Sparkles ──────────────────────── */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gentleDrift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(6px, -10px) scale(1.1);
+  }
+}
+
+@keyframes subtleTwinkle {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes scannerSweep {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 96%;
+    opacity: 0;
+  }
+}
+
+@keyframes successPop {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Utility animation classes */
+.anim-fade-in-up {
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.anim-delay-1 {
+  animation-delay: 80ms;
+}
+
+.anim-delay-2 {
+  animation-delay: 160ms;
+}
+
+.anim-delay-3 {
+  animation-delay: 240ms;
+}
+
+.anim-delay-4 {
+  animation-delay: 320ms;
+}
+
+.anim-drift-slow {
+  animation: gentleDrift 14s ease-in-out infinite;
+}
+
+.anim-twinkle {
+  animation: subtleTwinkle 4s ease-in-out infinite;
+}
+
+.anim-sweep-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.9), rgba(167, 139, 250, 0.9), transparent);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.8);
+  animation: scannerSweep 2.2s ease-in-out infinite;
+}
+
+.anim-success-pop {
+  animation: successPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Button Shimmer on Hover Only */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  transition: none;
+}
+
+.btn-shimmer:hover::after {
+  left: 150%;
+  transition: left 0.75s ease-in-out;
+}
+
+/* Interactive Card Elevation & Micro-transitions */
+.interactive-card {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.22s ease-out;
+}
+
+.interactive-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+}
+
+/* Pill Button Micro-interaction */
+.btn-pill {
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.18s ease-out,
+              background-color 0.18s ease-out,
+              color 0.18s ease-out;
+}
+
+.btn-pill:hover {
+  transform: translateY(-1.5px);
+}
+
+.btn-pill:active {
+  transform: scale(0.97) translateY(0);
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .anim-fade-in-up,
+  .anim-drift-slow,
+  .anim-twinkle,
+  .anim-sweep-line,
+  .btn-shimmer::after {
+    animation: none !important;
+    transform: none !important;
+  }
+}
